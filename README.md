@@ -6,6 +6,8 @@
 
 [Русская версия](README.ru.md)
 
+See also: [privileged operations and audit](PRIVILEGED-OPERATIONS.md).
+
 See [the roadmap](TODO.md) for implemented scope, intentional exclusions, and
 next work.
 
