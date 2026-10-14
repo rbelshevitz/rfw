@@ -1,5 +1,9 @@
 # rfw
 
+[![CI](https://github.com/rbelshevitz/rfw/actions/workflows/ci.yml/badge.svg)](https://github.com/rbelshevitz/rfw/actions/workflows/ci.yml)
+![Go version](https://img.shields.io/badge/Go-1.25.0-00ADD8?logo=go)
+[![License](https://img.shields.io/github/license/rbelshevitz/rfw)](LICENSE)
+
 [Русская версия](README.ru.md)
 
 See [the roadmap](TODO.md) for implemented scope, intentional exclusions, and

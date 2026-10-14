@@ -1,5 +1,9 @@
 # rfw
 
+[![CI](https://github.com/rbelshevitz/rfw/actions/workflows/ci.yml/badge.svg)](https://github.com/rbelshevitz/rfw/actions/workflows/ci.yml)
+![Версия Go](https://img.shields.io/badge/Go-1.25.0-00ADD8?logo=go)
+[![Лицензия](https://img.shields.io/github/license/rbelshevitz/rfw)](LICENSE)
+
 [English version](README.md)
 
 Реализованный scope, намеренные ограничения и следующая работа — в
