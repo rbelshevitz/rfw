@@ -91,13 +91,34 @@ func (a app) doctor(args []string) error {
 	bpf, bpfErr := a.run.Run("bpftool", "net", "show")
 	if bpfErr != nil {
 		fmt.Fprintln(a.out, "BPF network hooks: not inspectable (requires suitable privileges)")
-	} else if strings.TrimSpace(string(bpf)) == "" {
-		fmt.Fprintln(a.out, "BPF network hooks: none reported")
 	} else {
-		fmt.Fprintln(a.out, "WARNING: BPF network hooks are present; they can affect traffic outside firewalld.")
-		fmt.Fprint(a.out, string(bpf))
+		attachments := bpfAttachments(string(bpf))
+		if len(attachments) == 0 {
+			fmt.Fprintln(a.out, "BPF network hooks: none reported")
+		} else {
+			fmt.Fprintln(a.out, "WARNING: BPF network hooks are present; they can affect traffic outside firewalld.")
+			for _, attachment := range attachments {
+				fmt.Fprintln(a.out, attachment)
+			}
+		}
 	}
 	return nil
+}
+
+func bpfAttachments(output string) []string {
+	sections := map[string]bool{
+		"xdp:": true, "tc:": true, "tcx:": true, "netkit:": true,
+		"flow_dissector:": true, "netfilter:": true,
+	}
+	var attachments []string
+	for _, line := range strings.Split(output, "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" || sections[line] {
+			continue
+		}
+		attachments = append(attachments, line)
+	}
+	return attachments
 }
 
 func (a app) zones(args []string) error {
